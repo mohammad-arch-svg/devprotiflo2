@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Developer Portfolio</title>
+    <style>
+        /* Import Modern Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
+
+        /* Advanced CSS Variables */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --accent-primary: #00ff88;
+            --accent-secondary: #0088ff;
+            --accent-tertiary: #ff0088;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --gradient-1: linear-gradient(135deg, #00ff88, #0088ff);
+            --gradient-2: linear-gradient(135deg, #0088ff, #ff0088);
+            --shadow-glow: 0 0 20px rgba(0, 255, 136, 0.3);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 136, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 0, 136, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ai-typing {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            font-family: 'Fira Code', monospace;
+            min-height: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            background: var(--accent-primary);
+            width: 3px;
+            height: 1.5rem;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-1);
+            color: var(--bg-primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Languages Section - Updated for C++ focus */
+        .cpp-showcase {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cpp-card {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cpp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cpp-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .cpp-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .cpp-icon {
+            font-size: 4rem;
+            margin-right: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .cpp-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .proficiency-section {
+            margin: 2rem 0;
+        }
+
+        .proficiency-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .proficiency-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .proficiency-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 6px;
+            transition: width 2s ease;
+            width: 0;
+        }
+
+        .cpp-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .cpp-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: var(--gradient-1);
+            color: var(--bg-primary);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            opacity: 0.8;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-tertiary);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-item i {
+            color: var(--accent-primary);
+            margin-right: 1rem;
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            color: var(--accent-primary);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-1);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .ai-typing {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .cpp-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">DevPortfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#languages">C++ Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Your Name</h1>
+                <div class="ai-typing" id="ai-typing"></div>
+                <p class="hero-subtitle">C++ Developer | Problem Solver | Code Enthusiast</p>
+                <a href="#about" class="cta-button">Explore My Work</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title reveal">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text slide-in-left">
+                        <p>Hello! I'm a passionate C++ developer with a deep love for systems programming and creating efficient, high-performance solutions. My journey in software development has been driven by curiosity and the constant desire to master the intricacies of C++.</p>
+                        <p>I specialize in modern C++ development and have extensive experience building robust applications, from desktop software to system-level programming. I enjoy tackling complex algorithmic challenges and optimizing code for maximum performance.</p>
+                        <p>When I'm not coding, you'll find me exploring advanced C++ features, contributing to open-source projects, or fine-tuning my development environment for maximum productivity with tools like Hyprland.</p>
+                    </div>
+                    <div class="about-stats slide-in-right">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="1">0</span>
+                            <span class="stat-label">Primary Language</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="2">0</span>
+                            <span class="stat-label">Major Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="60">0</span>
+                            <span class="stat-label">Hours of C++ Coding</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-label"> month Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages">
+            <div class="container">
+                <h2 class="section-title reveal">C++ Expertise</h2>
+                <div class="cpp-showcase">
+                    <div class="cpp-card reveal">
+                        <div class="cpp-header">
+                            <i class="cpp-icon fab fa-cuttlefish"></i>
+                            <h3 class="cpp-title">C++</h3>
+                        </div>
+                        <div class="proficiency-section">
+                            <div class="proficiency-label">
+                                <span>Proficiency Level</span>
+                                <span>Advanced (90%)</span>
+                            </div>
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <p class="cpp-description">
+                            C++ is my primary programming language and my passion. I have deep expertise in modern C++ standards (C++11/14/17/20), 
+                            object-oriented programming, template metaprogramming, and memory management. I love the power and flexibility that C++ 
+                            provides for building high-performance applications, from desktop software to system-level programming.
+                        </p>
+                        <div class="cpp-features">
+                            <div class="feature-item">
+                                <i class="feature-icon fas fa-rocket"></i>
+                                <h4 class="feature-title">Performance</h4>
+                                <p class="feature-desc">Optimizing code for maximum speed and efficiency</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="feature-icon fas fa-cogs"></i>
+                                <h4 class="feature-title">Modern C++</h4>
+                                <p class="feature-desc">Using C++17/20 features and best practices</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="feature-icon fas fa-memory"></i>
+                                <h4 class="feature-title">Memory Management</h4>
+                                <p class="feature-desc">Expert in RAII, smart pointers, and memory optimization</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="feature-icon fas fa-puzzle-piece"></i>
+                                <h4 class="feature-title">Templates</h4>
+                                <p class="feature-desc">Advanced template programming and metaprogramming</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title reveal">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <h3 class="project-title">Calculator with GUI</h3>
+                            <p class="project-subtitle">Desktop Application</p>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">
+                                A sophisticated calculator application built with modern C++ and featuring a clean, intuitive graphical user interface. 
+                                This project demonstrates my skills in GUI development, event handling, mathematical computation, and creating 
+                                user-friendly desktop applications. The calculator handles complex mathematical operations with precision and 
+                                provides an excellent user experience with responsive design and keyboard shortcuts.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C++17</span>
+                                <span class="tech-tag">Qt/GTK</span>
+                                <span class="tech-tag">GUI Design</span>
+                                <span class="tech-tag">Mathematics</span>
+                                <span class="tech-tag">Event Handling</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Code</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <h3 class="project-title">Hyprland Dotfiles</h3>
+                            <p class="project-subtitle">System Configuration</p>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">
+                                A comprehensive collection of meticulously crafted configuration files for the Hyprland tiling window manager. 
+                                These dotfiles represent hundreds of hours of customization and optimization, creating a highly productive, 
+                                visually stunning Linux desktop environment. The configuration includes custom keybindings, themes, 
+                                workspace management, and workflow optimizations specifically tailored for C++ development and daily productivity tasks.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Hyprland</span>
+                                <span class="tech-tag">Linux</span>
+                                <span class="tech-tag">Shell Scripting</span>
+                                <span class="tech-tag">System Config</span>
+                                <span class="tech-tag">Workflow Optimization</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Config</a>
+                                <a href="#" class="project-link">Installation Guide</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title reveal">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info slide-in-left">
+                        <h3>Let's Connect</h3>
+                        <p>I'm always interested in new opportunities, collaborations, and interesting C++ projects. Feel free to reach out!</p>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>m65503207@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+962 7 8240 4611</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>jordan, amman</span>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+                    <form class="contact-form slide-in-right" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mohammad. All rights reserved. Built with passion and C++.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // AI Typing Effect
+        class AITypingEffect {
+            constructor(element, messages, typeSpeed = 100, deleteSpeed = 50, pauseTime = 2000) {
+                this.element = element;
+                this.messages = messages;
+                this.typeSpeed = typeSpeed;
+                this.deleteSpeed = deleteSpeed;
+                this.pauseTime = pauseTime;
+                this.currentMessageIndex = 0;
+                this.currentCharIndex = 0;
+                this.isDeleting = false;
+                this.start();
+            }
+
+            start() {
+                this.type();
+            }
+
+            type() {
+                const currentMessage = this.messages[this.currentMessageIndex];
+                
+                if (this.isDeleting) {
+                    this.element.innerHTML = currentMessage.substring(0, this.currentCharIndex - 1) + '<span class="cursor"></span>';
+                    this.currentCharIndex--;
+                } else {
+                    this.element.innerHTML = currentMessage.substring(0, this.currentCharIndex + 1) + '<span class="cursor"></span>';
+                    this.currentCharIndex++;
+                }
+
+                let speed = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+
+                if (!this.isDeleting && this.currentCharIndex === currentMessage.length) {
+                    speed = this.pauseTime;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.currentCharIndex === 0) {
+                    this.isDeleting = false;
+                    this.currentMessageIndex = (this.currentMessageIndex + 1) % this.messages.length;
+                }
+
+                setTimeout(() => this.type(), speed);
+            }
+        }
+
+        // Intersection Observer for animations
+        class AnimationObserver {
+            constructor() {
+                this.observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            
+                            // Special handling for proficiency bars
+                            if (entry.target.classList.contains('cpp-card')) {
+                                const bar = entry.target.querySelector('.proficiency-fill');
+                                if (bar) {
+                                    setTimeout(() => {
+                                        bar.style.width = bar.dataset.width;
+                                    }, 500);
+                                }
+                            }
+
+                            // Special handling for stat counters
+                            if (entry.target.classList.contains('stat-number')) {
+                                this.animateCounter(entry.target);
+                            }
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                this.init();
+            }
+
+            init() {
+                document.querySelectorAll('.reveal, .slide-in-left, .slide-in-right').forEach(el => {
+                    this.observer.observe(el);
+                });
+
+                document.querySelectorAll('.stat-number').forEach(el => {
+                    this.observer.observe(el);
+                });
+            }
+
+            animateCounter(element) {
+                const target = parseInt(element.dataset.target);
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current);
+                }, 16);
+            }
+        }
+
+        // Smooth scrolling for navigation
+        class SmoothScroll {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+        }
+
+        // Back to top button
+        class BackToTop {
+            constructor() {
+                this.button = document.getElementById('back-to-top');
+                this.init();
+            }
+
+            init() {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        this.button.classList.add('visible');
+                    } else {
+                        this.button.classList.remove('visible');
+                    }
+                });
+
+                this.button.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        }
+
+        // Contact form handler
+        class ContactForm {
+            constructor() {
+                this.form = document.getElementById('contact-form');
+                this.init();
+            }
+
+            init() {
+                this.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleSubmit();
+                });
+            }
+
+            handleSubmit() {
+                const formData = new FormData(this.form);
+                const data = Object.fromEntries(formData);
+                
+                // Simulate form submission
+                const submitBtn = this.form.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    alert('Thank you for your message! I\'ll get back to you soon.');
+                    this.form.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            }
+        }
+
+        // Header scroll effect
+        class HeaderEffect {
+            constructor() {
+                this.header = document.querySelector('header');
+                this.init();
+            }
+
+            init() {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 100) {
+                        this.header.style.background = 'rgba(10, 10, 10, 0.95)';
+                    } else {
+                        this.header.style.background = 'rgba(10, 10, 10, 0.9)';
+                    }
+                });
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // AI Typing messages focused on C++
+            const aiMessages = [
+                "AI: Initializing C++ portfolio...",
+                "AI: Loading developer profile...",
+                "AI: Welcome to my C++ world!",
+                "AI: Ready to explore my code?",
+                "AI: Let's build something amazing with C++!"
+            ];
+
+            // Initialize all components
+            new AITypingEffect(document.getElementById('ai-typing'), aiMessages);
+            new AnimationObserver();
+            new SmoothScroll();
+            new BackToTop();
+            new ContactForm();
+            new HeaderEffect();
+
+            // Add some interactive particles effect
+            const createParticle = () => {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: fixed;
+                    width: 4px;
+                    height: 4px;
+                    background: var(--accent-primary);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: -1;
+                    opacity: 0.7;
+                `;
+                
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = window.innerHeight + 'px';
+                
+                document.body.appendChild(particle);
+                
+                const animation = particle.animate([
+                    { transform: 'translateY(0px)', opacity: 0.7 },
+                    { transform: `translateY(-${window.innerHeight + 100}px)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'linear'
+                });
+                
+                animation.onfinish = () => particle.remove();
+            };
+
+            // Create particles occasionally
+            setInterval(createParticle, 300);
+        });
+    </script>
+</body>
+</html>
